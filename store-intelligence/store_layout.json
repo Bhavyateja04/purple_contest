@@ -1,0 +1,223 @@
+{
+  "store_id": "STORE_BLR_002",
+  "store_name": "Brigade_Bangalore",
+  "city": "Bangalore",
+  "address": "Brigade Road, Bangalore",
+  "open_hours": {
+    "open": "11:00",
+    "close": "22:00"
+  },
+  "cameras": [
+    {
+      "camera_id": "CAM_ENTRY_01",
+      "file": "CAM 1.mp4",
+      "type": "entry_exit",
+      "description": "Entry and exit threshold camera facing the glass door",
+      "zones_covered": ["ENTRY", "EXIT", "BACKLIT"],
+      "entry_line_y_ratio": 0.5,
+      "clip_start_time": "2026-04-10T12:00:00+05:30"
+    },
+    {
+      "camera_id": "CAM_FLOOR_02",
+      "file": "CAM 2.mp4",
+      "type": "main_floor",
+      "description": "Main floor overview camera — covers FOH, Fragrance, Nail Unit",
+      "zones_covered": ["FOH", "FRAGRANCE", "NAIL_UNIT", "MAKEUP_UNIT"],
+      "clip_start_time": "2026-04-10T12:00:00+05:30"
+    },
+    {
+      "camera_id": "CAM_DISPLAY_03",
+      "file": "CAM 3.mp4",
+      "type": "display_wall",
+      "description": "Back wall display zone camera — covers premium brand shelves",
+      "zones_covered": ["EB_KOREAN", "THE_FACE_SHOP", "GOOD_VIBES", "DERMDOC", "MINIMALIST", "AQUALOGICA", "LAKME_SKIN", "ACCESSORIES"],
+      "clip_start_time": "2026-04-10T12:00:00+05:30"
+    },
+    {
+      "camera_id": "CAM_BILLING_04",
+      "file": "CAM 4.mp4",
+      "type": "billing",
+      "description": "Billing counter and cash desk camera",
+      "zones_covered": ["CASH_COUNTER", "PMU"],
+      "clip_start_time": "2026-04-10T12:00:00+05:30"
+    },
+    {
+      "camera_id": "CAM_FRONT_05",
+      "file": "CAM 5.mp4",
+      "type": "front_display",
+      "description": "Front display wall camera — mass market brands",
+      "zones_covered": ["MAYBELLINE", "FACES_CANADA", "LAKME", "COLORBAR_SUGAR", "SWISS_BEAUTY", "RENEE_NY_BAE", "ALPS_GOODNESS", "STREAX"],
+      "clip_start_time": "2026-04-10T12:00:00+05:30"
+    }
+  ],
+  "zones": [
+    {
+      "zone_id": "ENTRY",
+      "zone_name": "Entry / Exit",
+      "sku_zone": "ENTRY",
+      "cameras": ["CAM_ENTRY_01"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "BACKLIT",
+      "zone_name": "Backlit Display Area",
+      "sku_zone": "BACKLIT",
+      "cameras": ["CAM_ENTRY_01"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "FOH",
+      "zone_name": "Front of House — Main Aisle",
+      "sku_zone": "GENERAL",
+      "cameras": ["CAM_FLOOR_02"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "FRAGRANCE",
+      "zone_name": "Fragrance",
+      "sku_zone": "FRAGRANCE",
+      "cameras": ["CAM_FLOOR_02"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "NAIL_UNIT",
+      "zone_name": "Nail Unit",
+      "sku_zone": "NAIL",
+      "cameras": ["CAM_FLOOR_02"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "MAKEUP_UNIT",
+      "zone_name": "Makeup Unit",
+      "sku_zone": "MAKEUP",
+      "cameras": ["CAM_FLOOR_02"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "EB_KOREAN",
+      "zone_name": "EB Korean",
+      "sku_zone": "SKINCARE",
+      "cameras": ["CAM_DISPLAY_03"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "THE_FACE_SHOP",
+      "zone_name": "The Face Shop",
+      "sku_zone": "SKINCARE",
+      "cameras": ["CAM_DISPLAY_03"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "GOOD_VIBES",
+      "zone_name": "Good Vibes",
+      "sku_zone": "SKINCARE",
+      "cameras": ["CAM_DISPLAY_03"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "DERMDOC",
+      "zone_name": "DermDoc",
+      "sku_zone": "SKINCARE",
+      "cameras": ["CAM_DISPLAY_03"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "MINIMALIST",
+      "zone_name": "Minimalist",
+      "sku_zone": "SKINCARE",
+      "cameras": ["CAM_DISPLAY_03"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "AQUALOGICA",
+      "zone_name": "Aqualogica",
+      "sku_zone": "SKINCARE",
+      "cameras": ["CAM_DISPLAY_03"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "LAKME_SKIN",
+      "zone_name": "Lakme Skin",
+      "sku_zone": "SKINCARE",
+      "cameras": ["CAM_DISPLAY_03"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "ACCESSORIES",
+      "zone_name": "Accessories",
+      "sku_zone": "ACCESSORIES",
+      "cameras": ["CAM_DISPLAY_03"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "CASH_COUNTER",
+      "zone_name": "Cash Counter / Billing",
+      "sku_zone": "BILLING",
+      "cameras": ["CAM_BILLING_04"],
+      "is_billing": true
+    },
+    {
+      "zone_id": "PMU",
+      "zone_name": "PMU (Permanent Makeup) Station",
+      "sku_zone": "SERVICES",
+      "cameras": ["CAM_BILLING_04"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "MAYBELLINE",
+      "zone_name": "Maybelline",
+      "sku_zone": "MAKEUP",
+      "cameras": ["CAM_FRONT_05"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "FACES_CANADA",
+      "zone_name": "Faces Canada",
+      "sku_zone": "MAKEUP",
+      "cameras": ["CAM_FRONT_05"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "LAKME",
+      "zone_name": "Lakme",
+      "sku_zone": "MAKEUP",
+      "cameras": ["CAM_FRONT_05"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "COLORBAR_SUGAR",
+      "zone_name": "Colorbar + Sugar",
+      "sku_zone": "MAKEUP",
+      "cameras": ["CAM_FRONT_05"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "SWISS_BEAUTY",
+      "zone_name": "Swiss Beauty",
+      "sku_zone": "MAKEUP",
+      "cameras": ["CAM_FRONT_05"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "RENEE_NY_BAE",
+      "zone_name": "Renee NY Bae",
+      "sku_zone": "MAKEUP",
+      "cameras": ["CAM_FRONT_05"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "ALPS_GOODNESS",
+      "zone_name": "Alps Goodness",
+      "sku_zone": "HAIRCARE",
+      "cameras": ["CAM_FRONT_05"],
+      "is_billing": false
+    },
+    {
+      "zone_id": "STREAX",
+      "zone_name": "Streax",
+      "sku_zone": "HAIRCARE",
+      "cameras": ["CAM_FRONT_05"],
+      "is_billing": false
+    }
+  ]
+}

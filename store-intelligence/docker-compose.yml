@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: store-intelligence-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist database and events between restarts
+      - store_data:/data
+      # Mount POS CSV from parent directory (read-only)
+      - ../Brigade_Bangalore_10_April_26 (1)bc6219c.csv:/data/pos_transactions.csv:ro
+      # Mount events file so pipeline output is readable inside container
+      - ./events.jsonl:/app/events.jsonl
+    environment:
+      - DATABASE_URL=sqlite:////data/store_intelligence.db
+      - POS_CSV_PATH=/data/pos_transactions.csv
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  # Optional: feed pre-processed events into API on startup
+  event-loader:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: store-event-loader
+    depends_on:
+      api:
+        condition: service_healthy
+    volumes:
+      - ./events.jsonl:/app/events.jsonl:ro
+    environment:
+      - API_URL=http://api:8000
+    command: >
+      python3 -c "
+      import json, time, requests, os, sys
+      path = '/app/events.jsonl'
+      api = os.getenv('API_URL', 'http://api:8000')
+      if not os.path.exists(path) or os.path.getsize(path) == 0:
+          print('No events.jsonl found — skipping event loader')
+          sys.exit(0)
+      with open(path) as f:
+          events = [json.loads(l) for l in f if l.strip()]
+      BATCH = 500
+      total = 0
+      for i in range(0, len(events), BATCH):
+          batch = events[i:i+BATCH]
+          try:
+              r = requests.post(f'{api}/events/ingest', json={'events': batch}, timeout=30)
+              result = r.json()
+              total += result.get('accepted', 0)
+              print(f'Batch {i//BATCH+1}: accepted={result.get(\"accepted\")}, dup={result.get(\"duplicate\")}')
+          except Exception as e:
+              print(f'Batch {i//BATCH+1} error: {e}')
+          time.sleep(0.1)
+      print(f'Total events loaded: {total}')
+      "
+    restart: "no"
+
+volumes:
+  store_data:
+    driver: local
